@@ -88,7 +88,7 @@ git remote addなどで、originという文字列と、URLを紐づける
 （この案件は、developブランチとfeatureブランチのみで行う形で、masterブランチはなくても構わない）
 ```
 
-# README
+# README in English
 
 This theme is an application to improve Slack dependency of document sharing.  
 (An in-house tool developed to facilitate internal information sharing)
