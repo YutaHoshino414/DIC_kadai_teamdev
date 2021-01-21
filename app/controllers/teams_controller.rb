@@ -53,6 +53,7 @@ class TeamsController < ApplicationController
     @team.owner_id = user.id
     if @team.update(team_params)
       # binding.pry
+      ChangeOwnerMailer.change_owner_mail(@team, user).deliver
       redirect_to team_path(@team.id), notice: 'リーダー権限を移動しました！'
     else
       redirect_to team_path(@team.id), notice: 'リーダー権限の移動に失敗しました、、'
