@@ -8,7 +8,7 @@
   <div class="sidebar">
     <div class="user-panel mt-3 pb-3 mb-3">
       <div class="info">
-        <h3 style="color: white;"><%= @working_team.name.truncate(15) %></h3>
+        <h3 style="color: white;"><%= @working_team.name.truncate(15) %>チーム</h3>
       </div>
     </div>
 
@@ -30,13 +30,12 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <% @working_team.agendas.each do |agenda| %>
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link">
-              <i class="fa fa-circle-o nav-icon"></i>
-              <p>
-                <%= agenda.title %>
+            <span href="#" class="nav-link">
+            <i class="far fa-edit"></i>
+                <%= agenda.title %><span>　　</span>
+                <%= link_to '削除', agenda_path(agenda.id), method: :delete, class:"btn btn-outline-warning btn-sm", data: {confirm: "本当に削除していいですか？"} %>
                 <i class="right fa fa-angle-left"></i>
-              </p>
-            </a>
+            </span>
             <ul class="nav nav-treeview" style="display: block;">
               <% agenda.articles.each do |article| %>
                 <li class="nav-item">

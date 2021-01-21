@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p style="color:red;"><%= notice %></p>
 
 <div class="row mt-3">
   <div class="col-md-8">
@@ -14,12 +14,14 @@
                 <td><%= image_tag default_img(nil), size: '40x40' %></td>
                 <td>
                   <%= link_to article_path(article) do %>
-                    <span><%= article.team.name %><%= I18n.t('views.common.team') %></span>
-                    <span class="badge bg-primary"><%= article.agenda.title %></span>
+                    <span><%= article.team.name %><%= I18n.t('views.common.team') %></span><span>　</span>
+                    <span class="badge bg-info"><%= article.agenda.title %></span><br>
                     <%= article.title %>
                   <% end %>
                   <br>
-                  <%= l(article.created_at, format: :long) %><%= I18n.t('views.messages.posted_at') %>
+                </td>
+                <td>
+                  <%= l(article.created_at, format: :long) %><br><%= I18n.t('views.messages.posted_at') %>
                 </td>
               </tr>
             <% end %>
