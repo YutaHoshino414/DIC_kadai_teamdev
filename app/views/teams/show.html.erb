@@ -31,7 +31,7 @@
               <table class="table">
                 <tr>
                   <td><%= image_tag 'default.jpg', size: '40x40' %></td>
-                  <td><label style="background-color: red"><%= I18n.t('views.messages.leader') %></label>：<%= @team.owner.email %></td>
+                  <td><label style="background-color: red"><%= I18n.t('views.messages.leader') %></label>：<%= @team.owner.email %>/id:<%= @team.owner.id %></td>
                 </tr>
               </table>
               <h5><%= I18n.t('views.messages.team_members2') %></h5>
@@ -40,9 +40,11 @@
                   <% @team.assigns.each do |assign| %>
                     <tr>
                       <td><%= image_tag 'default.jpg', size: '40x40' %></td>
-                      <td><%= assign.user.email %></td>
+                      <td><%= assign.user.email %>/<%= assign.user_id %></td>
                       <td><%= link_to I18n.t('views.button.delete'), team_assign_path(@team, assign), method: :delete, class: 'btn btn-sm btn-danger' %></td>
-                      <td><button class="btn btn-dark">権限移動</button></td>
+                      <% if (current_user == @team.owner) && (current_user != assign.user) %>
+                      <td><%= link_to '権限移動', change_owner_team_path(@team.id, assign_user_id: assign.user.id), method:  :patch, class: 'btn btn-sm btn-warning' %></td>
+                      <% end %>
                       </tr>
                   <% end %>
                 </tbody>
